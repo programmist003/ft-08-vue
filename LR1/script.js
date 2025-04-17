@@ -103,16 +103,62 @@ function gameLoop() {
 }
 
 // TODO: добавить обработчик нажатия на клавиши
+document.addEventListener('keydown', (event) => {
+  switch (event.key) {
+    case 'ArrowUp':
+      moveUp();
+      break;
+    case 'ArrowDown':
+      moveDown();
+      break;
+    case 'ArrowLeft':
+      moveLeft();
+      break;
+    case 'ArrowRight':
+      moveRight();
+      break;
+  }
+});
 
 // TODO: добавить обработчик нажатия клавиши R (сброс игры)
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'r') resetGame();
+});
 
 // TODO: добавить обработчики нажатия кнопок
+function moveUp() {
+  if (direction !== 'down') direction = 'up';
+}
 
+function moveDown() {
+  if (direction !== 'up') direction = 'down';
+}
+
+function moveLeft() {
+  if (direction !== 'right') direction = 'left';
+}
+
+function moveRight() {
+  if (direction !== 'left') direction = 'right';
+}
 // TODO: добавить возможность изменения скорости змейки
+const speedInput = document.createElement('input');
+speedInput.type = 'number';
+speedInput.value = speed;
+speedInput.min = 100;
+speedInput.max = 1000;
+speedInput.step = 100;
+document.body.appendChild(speedInput);
 
+speedInput.addEventListener('change', (event) => {
+  speed = Number(event.target.value);
+});
 updateScore(snake.length);
 gameLoop();
 
 function updateScore(score) {
   // TODO: Реализуй меня!
+  const scoreElement = document.querySelector('.score');
+  scoreElement.textContent = `Score: ${score}`;
+  
 }
