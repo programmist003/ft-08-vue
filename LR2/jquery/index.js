@@ -25,7 +25,19 @@ function addTask() {
       $(listItem).remove();
     });
 
-    
+    const renameButton = $('<button class="rename-button">✏</button>');
+    $(listItem).append(renameButton);
+
+    $(renameButton).on('click', function (event) {
+      event.stopPropagation();
+      const index = $(listItem).index();
+      const newName = prompt('Введите новое имя задачи:', tasks[index].text);
+      if (newName !== null && newName.trim() !== '') {
+        tasks[index].text = newName;
+        $(taskText).text(newName);
+      }
+    });
+
 
   }
 }
