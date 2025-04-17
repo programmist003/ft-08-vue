@@ -16,6 +16,17 @@ function addTask() {
 
     $('#todo-list').append(listItem);
     $('#new-task').val('');
+    const deleteButton = $('<button class="delete-button">❌</button>');
+    $(listItem).append(deleteButton);
+    
+    $(deleteButton).on('click', function () {
+      const index = $(listItem).index();
+      tasks.splice(index, 1);
+      $(listItem).remove();
+    });
+
+    
+
   }
 }
 
@@ -23,3 +34,7 @@ $('form').on('submit', function (e) {
   e.preventDefault();
   addTask();
 });
+
+
+
+
