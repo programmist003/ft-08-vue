@@ -1,5 +1,6 @@
 <script>
 import { ref, onMounted } from 'vue';
+import Emoji from './components/Emoji.vue';
 
 export default {
   setup() {
